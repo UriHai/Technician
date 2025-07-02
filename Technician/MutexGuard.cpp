@@ -1,13 +1,15 @@
 #include "MutexGuard.h"
 
 #include <windows.h>
+#include <string>
 #include <iostream>
 
+using std::string;
 using std::cout;
 using std::endl;
 
-MutexGuard::MutexGuard(LPCSTR name) {
-    m_mutexHandle = CreateMutexA(NULL, TRUE, name);
+MutexGuard::MutexGuard(string name) {
+    m_mutexHandle = CreateMutexA(NULL, TRUE, static_cast<LPCSTR>(name.c_str()));
     LSTATUS lastError = GetLastError();
     if (m_mutexHandle == NULL) {
         cout << "CreateMutexA failed. Error: " << lastError;

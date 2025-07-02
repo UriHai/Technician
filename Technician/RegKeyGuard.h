@@ -3,12 +3,14 @@
 #include <windows.h>
 #include <string>
 
-class RegKeyGuard {
+class RegKeyGuard final {
 public:
     /**
      * @brief RegKeyGuard constructor
      *
-     * @param name [IN] Mutex name
+     * @param hKey       [IN]  Handle to the registry key
+     * @param keyPath    [IN]  Registry key path
+     * @param pKeyHandle [OUT] Pointer to the key handle
      */
     RegKeyGuard(HKEY hKey, std::string keyPath, PHKEY pKeyHandle);
 
@@ -16,5 +18,5 @@ public:
     ~RegKeyGuard();
 
 private:
-    HANDLE m_mutexHandle;
+    HKEY m_regKeyHandle;
 };

@@ -5,11 +5,10 @@
 #include <string>
 
 
-constexpr LPCSTR RUN_KEY_PATH = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run";
-constexpr LPCSTR VALUE_NAME = "RemoteManagement";
+const std::string VALUE_NAME = "RemoteManagement";
 
-constexpr LPCSTR MESSAGE_BOX_TITLE = "Remote Managment";
-constexpr LPCSTR MESSAGE_BOX_TEXT = "Managment program is up";
+const std::string MESSAGE_BOX_TITLE = "Remote Managment";
+const std::string MESSAGE_BOX_TEXT = "Managment program is up";
 constexpr UINT MESSAGE_BOX_TYPE = MB_OK | MB_ICONINFORMATION;
 
 constexpr size_t MILLISECONDS_IN_SECOND = 1000;
@@ -17,13 +16,6 @@ constexpr size_t SECONDS_IN_MINUTE = 60;
 constexpr size_t MINUTES_IN_HOUR = 60;
 constexpr size_t MILLISECONDS_IN_HOUR = MILLISECONDS_IN_SECOND * SECONDS_IN_MINUTE * MINUTES_IN_HOUR;
 constexpr DWORD SLEEP_TIME = static_cast<DWORD>(MILLISECONDS_IN_HOUR);
-
-/**
- * @brief Create mutex for the program
- * 
- * @return Error status
- */
-LSTATUS createProgramMutex();
 
 /**
  * @brief Add the path as a registry value

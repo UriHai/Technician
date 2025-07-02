@@ -1,15 +1,16 @@
 #pragma once
 
 #include <windows.h>
+#include <string>
 
-class MutexGuard {
+class MutexGuard final {
 public:
     /**
      * @brief MutexGuard constructor
      * 
      * @param name [IN] Mutex name
      */
-    MutexGuard(LPCSTR name);
+    MutexGuard(std::string name);
 
     // MutexGuard deconstructor
     ~MutexGuard();

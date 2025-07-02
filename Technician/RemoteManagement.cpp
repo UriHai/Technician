@@ -13,7 +13,7 @@ LSTATUS addPathToRegistry(HKEY keyHandle, const string programPath) {
     DWORD pathSize = static_cast<DWORD>(programPath.size()) + 1;
     const BYTE* path = reinterpret_cast<const BYTE*>(programPath.c_str());
 
-    LSTATUS status = RegSetValueExA(keyHandle, VALUE_NAME, 0, REG_SZ, path, pathSize);
+    LSTATUS status = RegSetValueExA(keyHandle, static_cast<LPCSTR>(VALUE_NAME.c_str()), 0, REG_SZ, path, pathSize);
     if (status != ERROR_SUCCESS) {
         cout << "Couldn't set registry key value: Error " << status;
         return status;
@@ -22,6 +22,6 @@ LSTATUS addPathToRegistry(HKEY keyHandle, const string programPath) {
 }
 
 void runRemoteManagementProgram() {
-    MessageBoxA(NULL, MESSAGE_BOX_TEXT, MESSAGE_BOX_TITLE, MESSAGE_BOX_TYPE);
+    MessageBoxA(NULL, static_cast<LPCSTR>(MESSAGE_BOX_TEXT.c_str()), static_cast<LPCSTR>(MESSAGE_BOX_TITLE.c_str()), MESSAGE_BOX_TYPE);
     Sleep(SLEEP_TIME);
 }
