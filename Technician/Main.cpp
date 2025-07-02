@@ -1,14 +1,24 @@
 #include "windows.h"
 #include <string>
 #include <iostream>
+#include <mutex>
 
 #include "RemoteManagement.h"
 
 using std::string;
 using std::cout;
 using std::endl;
+using std::mutex;
+using std::lock_guard;
 
 int main(int nargs, char* args[]) {
+	HANDLE programMutex = CreateMutexA(NULL, TRUE, "RemoteManagementMutex");
+	DWORD lastError = GetLastError();
+	if (lastError != ERROR_SUCCESS) {
+		cout << "A Remote Management process is already running" << endl;
+		return lastError;
+	}
+
 	const string programPath = args[0];
 	HKEY keyHandle = 0;
 	PHKEY pKeyHandle = &keyHandle;
