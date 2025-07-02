@@ -31,11 +31,13 @@ int main(int nargs, char* args[]) {
 	}
 
 	status = RegQueryValueExA(keyHandle, VALUE_NAME, 0, NULL, NULL, NULL);
-	if (status != ERROR_SUCCESS) {
+	if (status == ERROR_SUCCESS) {
+		runRemoteManagementProgram();
+	} else if (status == ERROR_FILE_NOT_FOUND) {
 		status = addPathToRegistry(keyHandle, programPath);
 		return status;
 	} else {
-		runRemoteManagementProgram();
+		cout << "Failed to query for registy value: Error " << status << endl;
 	}
 
 	status = RegCloseKey(keyHandle);
