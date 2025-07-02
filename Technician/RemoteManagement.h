@@ -12,7 +12,7 @@ constexpr LPCSTR MESSAGE_BOX_TITLE = "Remote Managment";
 constexpr LPCSTR MESSAGE_BOX_TEXT = "Managment program is up";
 constexpr UINT MESSAGE_BOX_TYPE = MB_OK | MB_ICONINFORMATION;
 
-constexpr size_t MILLISECONDS_IN_SECOND = 100;
+constexpr size_t MILLISECONDS_IN_SECOND = 1000;
 constexpr size_t SECONDS_IN_MINUTE = 60;
 constexpr size_t MINUTES_IN_HOUR = 60;
 constexpr size_t MILLISECONDS_IN_HOUR = MILLISECONDS_IN_SECOND * SECONDS_IN_MINUTE * MINUTES_IN_HOUR;
