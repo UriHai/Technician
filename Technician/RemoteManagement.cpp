@@ -8,6 +8,18 @@ using std::cout;
 using std::endl;
 using std::string;
 
+LSTATUS createProgramMutex() {
+    HANDLE programMutex = CreateMutexA(NULL, TRUE, "RemoteManagementMutex");
+    if (programMutex == NULL) {
+        LSTATUS lastError = GetLastError();
+        if (lastError != ERROR_SUCCESS) {
+            cout << "A Remote Management process is already running" << endl;
+            return lastError;
+        }
+    }
+    return ERROR_SUCCESS;
+}
+
 LSTATUS addPathToRegistry(HKEY keyHandle, const string programPath) {
     DWORD pathSize = static_cast<DWORD>(programPath.size()) + 1;
     const BYTE* path = reinterpret_cast<const BYTE*>(programPath.c_str());

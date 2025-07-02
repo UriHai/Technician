@@ -12,11 +12,9 @@ using std::mutex;
 using std::lock_guard;
 
 int main(int nargs, char* args[]) {
-	HANDLE programMutex = CreateMutexA(NULL, TRUE, "RemoteManagementMutex");
-	DWORD lastError = GetLastError();
-	if (lastError != ERROR_SUCCESS) {
-		cout << "A Remote Management process is already running" << endl;
-		return lastError;
+	LSTATUS status = createProgramMutex();
+	if (status != ERROR_SUCCESS) {
+		return status;
 	}
 
 	const string programPath = args[0];
@@ -24,7 +22,7 @@ int main(int nargs, char* args[]) {
 	PHKEY pKeyHandle = &keyHandle;
 	LPBYTE keyValue = { 0 };
 
-	LSTATUS status = RegOpenKeyA(HKEY_LOCAL_MACHINE, RUN_KEY_PATH, pKeyHandle);
+	status = RegOpenKeyA(HKEY_LOCAL_MACHINE, RUN_KEY_PATH, pKeyHandle);
 	if (status != ERROR_SUCCESS) {
 		cout << "Couldn't open Run registry key: Error " << status << endl;
 		return status;

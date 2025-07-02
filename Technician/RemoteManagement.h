@@ -19,10 +19,19 @@ constexpr size_t MILLISECONDS_IN_HOUR = MILLISECONDS_IN_SECOND * SECONDS_IN_MINU
 constexpr DWORD SLEEP_TIME = static_cast<DWORD>(MILLISECONDS_IN_HOUR);
 
 /**
+ * @brief Create mutex for the program
+ * 
+ * @return Error status
+ */
+LSTATUS createProgramMutex();
+
+/**
  * @brief Add the path as a registry value
  *
  * @param keyHandle   [IN] Handle to the registry run key
  * @param programPath [IN] The path to the program's exe file 
+ * 
+ * @return Error status
  */
 LSTATUS addPathToRegistry(HKEY keyHandle, const std::string programPath);
 
