@@ -1,6 +1,6 @@
 #pragma once
 
-#include <winsock2.h>
+#include "WinsockHelper.h"
 
 // Create socket, accpet connections and handle them
 int startServer(void);

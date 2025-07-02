@@ -135,6 +135,7 @@
   <ItemGroup>
     <ClInclude Include="RemoteManagement.h" />
     <ClInclude Include="Server.h" />
+    <ClInclude Include="WinsockHelper.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
