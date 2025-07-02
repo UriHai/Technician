@@ -39,8 +39,10 @@ int main(int nargs, char* args[]) {
 	}
 
 	status = RegCloseKey(keyHandle);
-	cout << "Couldn't close Run registry key: Error " << status << endl;
-	return status;
+	if (status != ERROR_SUCCESS) {
+		cout << "Couldn't close Run registry key: Error " << status << endl;
+		return status;
+	}
 
 	return 0;
 }
