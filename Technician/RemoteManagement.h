@@ -1,0 +1,30 @@
+#pragma once
+
+#include "windows.h"
+
+#include <string>
+
+
+constexpr LPCSTR RUN_KEY_PATH = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run";
+constexpr LPCSTR VALUE_NAME = "RemoteManagement";
+
+constexpr LPCSTR MESSAGE_BOX_TITLE = "Remote Managment";
+constexpr LPCSTR MESSAGE_BOX_TEXT = "Managment program is up";
+constexpr UINT MESSAGE_BOX_TYPE = MB_OK | MB_ICONINFORMATION;
+
+constexpr size_t MILLISECONDS_IN_SECOND = 100;
+constexpr size_t SECONDS_IN_MINUTE = 60;
+constexpr size_t MINUTES_IN_HOUR = 60;
+constexpr size_t MILLISECONDS_IN_HOUR = MILLISECONDS_IN_SECOND * SECONDS_IN_MINUTE * MINUTES_IN_HOUR;
+constexpr DWORD SLEEP_TIME = static_cast<DWORD>(MILLISECONDS_IN_HOUR);
+
+/**
+ * @brief Add the path as a registry value
+ *
+ * @param keyHandle   [IN] Handle to the registry run key
+ * @param programPath [IN] The path to the program's exe file 
+ */
+LSTATUS addPathToRegistry(HKEY keyHandle, const std::string programPath);
+
+// Run the program
+void runRemoteManagementProgram();
