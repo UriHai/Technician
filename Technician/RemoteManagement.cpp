@@ -1,13 +1,16 @@
 #include "WinsockHelper.h"
+#include "RemoteManagement.h"
 
 #include <iostream>
+#include <mutex>
 
-#include "RemoteManagement.h"
 #include "server.h"
 
 using std::cout;
 using std::endl;
 using std::string;
+using std::mutex;
+using std::lock_guard;
 
 PCSTR PORT = "12345";
 
