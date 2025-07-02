@@ -3,15 +3,19 @@
 #include <iostream>
 
 #include "RemoteManagement.h"
+#include "MutexGuard.h"
 
 using std::string;
 using std::cout;
 using std::endl;
 
+const LPCSTR MUTEX_NAME = "RemoteManagementMutex";
+
 int main(int nargs, char* args[]) {
-	LSTATUS status = createProgramMutex();
-	if (status != ERROR_SUCCESS) {
-		return status;
+	try {
+		MutexGuard programMutex(MUTEX_NAME);
+	} catch (LSTATUS error) {
+		return error;
 	}
 
 	const string programPath = args[0];
@@ -19,7 +23,7 @@ int main(int nargs, char* args[]) {
 	PHKEY pKeyHandle = &keyHandle;
 	LPBYTE keyValue = { 0 };
 
-	status = RegOpenKeyA(HKEY_LOCAL_MACHINE, RUN_KEY_PATH, pKeyHandle);
+	LSTATUS status = RegOpenKeyA(HKEY_LOCAL_MACHINE, RUN_KEY_PATH, pKeyHandle);
 	if (status != ERROR_SUCCESS) {
 		cout << "Couldn't open Run registry key: Error " << status << endl;
 		return status;
