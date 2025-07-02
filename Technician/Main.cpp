@@ -1,15 +1,12 @@
 #include "windows.h"
 #include <string>
 #include <iostream>
-#include <mutex>
 
 #include "RemoteManagement.h"
 
 using std::string;
 using std::cout;
 using std::endl;
-using std::mutex;
-using std::lock_guard;
 
 int main(int nargs, char* args[]) {
 	LSTATUS status = createProgramMutex();

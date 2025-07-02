@@ -1,12 +1,15 @@
 #include "RemoteManagement.h"
 
 #include <iostream>
+#include <mutex>
 
 #include "windows.h"
 
 using std::cout;
 using std::endl;
 using std::string;
+using std::mutex;
+using std::lock_guard;
 
 LSTATUS createProgramMutex() {
     HANDLE programMutex = CreateMutexA(NULL, TRUE, "RemoteManagementMutex");
